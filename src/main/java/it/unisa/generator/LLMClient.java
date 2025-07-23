@@ -10,9 +10,9 @@ public class LLMClient {
     private static String model = "codellama-13b-instruct";
     private static double temperature = 0.3;
 
-    public static void configure(String hostUrl, String model, double tmp) {
+    public static void configure(String hostUrl, String mdl, double tmp) {
         endpoint = hostUrl.endsWith("/") ? hostUrl + "v1/chat/completions" : hostUrl + "/v1/chat/completions";
-        model = model;
+        model = mdl;
         temperature = tmp;
     }
 

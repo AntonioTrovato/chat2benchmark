@@ -5,20 +5,20 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         if (args.length < 3 || !args[1].equals("-host")) {
-            System.err.println("Usage: java -jar chat2benchmark.jar <input.json> -host <llm_url> [-model <model>] [-tmp <temperature>]");
+            System.err.println("Usage: java -jar chat2benchmark.jar <input.json> -host <llm_url> [-mdl <model>] [-tmp <temperature>]");
             System.exit(1);
         }
 
         String jsonPath = args[0];
         String hostUrl = args[2];
 
-        String model = "codellama-13b-instruct";
+        String mdl = "codellama-13b-instruct";
         double temperature = 0.3;
 
         for (int i = 3; i < args.length; i++) {
             switch (args[i]) {
                 case "-llm":
-                    model = args[++i];
+                    mdl = args[++i];
                     break;
                 case "-tmp":
                     temperature = Double.parseDouble(args[++i]);
@@ -26,7 +26,7 @@ public class Main {
             }
         }
 
-        LLMClient.configure(hostUrl, model, temperature);
+        LLMClient.configure(hostUrl, mdl, temperature);
 
         Map<String, List<String>> input = JsonInputParser.parse(jsonPath);
 
