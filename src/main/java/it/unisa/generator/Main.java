@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         if (args.length < 3 || !args[1].equals("-host")) {
-            System.err.println("Usage: java -jar chat2benchmark.jar <input.json> -llm <llm_url> [-mdl <model>] [-tmp <temperature>]");
+            System.err.println("Usage: java -jar chat2benchmark.jar <input.json> -host <llm_url> [-model <model>] [-tmp <temperature>]");
             System.exit(1);
         }
 
