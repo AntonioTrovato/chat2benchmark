@@ -10,7 +10,7 @@ public class BenchmarkFileWriter {
 
         String jmhPath = originalJavaPath
                 .replace("/main/", "/jmh/")
-                .replace(".java", "Microbenchmark.java");
+                .replace(".java", "Benchmark.java");
 
         Path path = Paths.get(jmhPath);
         Files.createDirectories(path.getParent());

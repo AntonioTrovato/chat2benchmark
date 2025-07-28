@@ -17,12 +17,15 @@ public class Main {
 
         for (int i = 3; i < args.length; i++) {
             switch (args[i]) {
-                case "-llm":
+                case "-mdl":
                     mdl = args[++i];
                     break;
                 case "-tmp":
                     temperature = Double.parseDouble(args[++i]);
                     break;
+                default:
+                    System.err.println("Unknown argument: " + args[i]);
+                    System.exit(1);
             }
         }
 
@@ -33,7 +36,9 @@ public class Main {
         for (String javaPath : input.keySet()) {
             List<String> methods = input.get(javaPath);
             String prompt = PromptBuilder.buildBenchmarkPrompt(javaPath, methods);
+            System.out.println("Generated prompt: " + prompt);
             String code = LLMClient.generate(prompt);
+            System.out.println("Generated test code:\n" + code);
             BenchmarkFileWriter.writeBenchmark(javaPath, code);
         }
 
