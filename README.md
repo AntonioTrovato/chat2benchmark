@@ -6,6 +6,10 @@
 
 ---
 
+## 📦 Download
+
+You can download the latest version of `chat2unittest` from the [releases](https://github.com/AntonioTrovato/chat2benchmark/releases) page.
+
 ## ✅ Key Features
 
 - Accepts a JSON file listing methods to be tested
@@ -56,19 +60,25 @@ Example
 ]
 ```
 
+---
+
 ## 🚀 How To Run
 
-java -jar ju-to-jmh/chat2benchmark.jar input.json -host https://xxxxxxxx/v1/chat/completions -mdl model_name -tmp temperature
+java -jar path/to/jar/chat2benchmark.jar input.json -host https://xxxxxxxx/v1/chat/completions -mdl model_name -tmp temperature
 
 Where:
 - host: URL of your LLM chat endpoint
 - mdl: Model name (e.g., "codellama-13b-instruct")
 - tmp: Temperature for the LLM
 
+---
+
 ## 📝 Output
 
 The generated benchmark classes will be written to the corresponding `src/jmh/java` directory, maintaining the same package structure as the production code.
 The generated class will be named `ClassNameBenchmark.java` for each `ClassName.java` in the input and contain the microbenchmark methods for the specified methods in the json file.
+
+---
 
 ## 🛠️ Notes
 
