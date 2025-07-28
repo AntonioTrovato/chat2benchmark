@@ -16,9 +16,11 @@
 ---
 
 ## 📁 Project Structure (Expected)
+```bash
 ├── src/
 │ ├── main/java/ # Production code
 │ └── jmh/java/ # Generated benchmarks go here
+```
 
 The tool supports also projects with multiple submodules, each having that structure (module1/src/..., module2/src/..., ect...).
 
