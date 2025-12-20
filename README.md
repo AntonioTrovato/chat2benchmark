@@ -1,4 +1,4 @@
-# chat2unittest
+# chat2benchmark
 
 `chat2unittest` is a standalone Java tool that **automatically generates JMH 1.37 benchmark classes** for Java production methods using a **Large Language Model (LLM)** via a configurable API.
 
