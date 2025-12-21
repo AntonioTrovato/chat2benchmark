@@ -16,6 +16,11 @@ public class PromptBuilder {
         sb.append(code).append("\n\n");
         sb.append("Include @Benchmark methods to measure performance ONLY of methods: ");
         sb.append(String.join(", ", methods)).append(".\n");
+        sb.append("\nIMPORTANT:\n");
+        sb.append("- Output ONLY valid Java code\n");
+        sb.append("- Do NOT include explanations, notes, comments, or markdown\n");
+        sb.append("- Do NOT include ``` or any text outside the Java class\n");
+        sb.append("- The output must be directly compilable\n");
         return sb.toString();
     }
 }

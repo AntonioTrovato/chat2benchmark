@@ -73,19 +73,23 @@ public class LLMClient {
     private static String cleanCode(String raw) {
         if (raw == null) return "";
 
-        String cleaned = raw.trim();
-
-        // Rimuove blocchi markdown ```java ... ``` o simili
-        if (cleaned.startsWith("```")) {
-            cleaned = cleaned.replaceFirst("^```[a-zA-Z]*\\s*", ""); // inizio blocco
-            cleaned = cleaned.replaceFirst("\\s*```\\s*$", "");       // fine blocco
+        // Se c'è un blocco ```java, prendiamo SOLO quello
+        int start = raw.indexOf("```");
+        if (start != -1) {
+            int end = raw.lastIndexOf("```");
+            if (end > start) {
+                raw = raw.substring(start + 3, end);
+                raw = raw.replaceFirst("^java\\s*", "");
+            }
         }
 
-        // Rimuove eventuali backtick singoli "`"
-        if (cleaned.startsWith("`") && cleaned.endsWith("`")) {
-            cleaned = cleaned.substring(1, cleaned.length() - 1);
+        // Fallback: prendiamo da 'package' in poi
+        int pkg = raw.indexOf("package ");
+        if (pkg != -1) {
+            raw = raw.substring(pkg);
         }
 
-        return cleaned.trim();
+        return raw.trim();
     }
+
 }
