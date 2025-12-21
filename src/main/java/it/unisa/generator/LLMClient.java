@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 public class LLMClient {
+    // Support for api keys
+    private static String apiKey = System.getenv("OPENAI_API_KEY");
+
     private static String endpoint = "http://localhost:1234/v1/chat/completions";
     private static String model = "codellama-13b-instruct";
     private static double temperature = 0.3;
@@ -36,9 +39,18 @@ public class LLMClient {
         ObjectMapper mapper = new ObjectMapper();
         String jsonPayload = mapper.writeValueAsString(body);
 
-        HttpRequest req = HttpRequest.newBuilder()
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(endpoint))
-                .header("Content-Type", "application/json")
+                .header("Content-Type", "application/json");
+
+        if (endpoint.contains("openai.com")) {
+            if (apiKey == null || apiKey.isBlank()) {
+                throw new RuntimeException("OPENAI_API_KEY environment variable not set");
+            }
+            builder.header("Authorization", "Bearer " + apiKey);
+        }
+
+        HttpRequest req = builder
                 .POST(BodyPublishers.ofString(jsonPayload))
                 .build();
 
