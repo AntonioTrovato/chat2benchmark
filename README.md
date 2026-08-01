@@ -1,6 +1,6 @@
 # chat2benchmark
 
-`chat2unittest` is a standalone Java tool that **automatically generates JMH 1.37 benchmark classes** for Java production methods using a **Large Language Model (LLM)** via a configurable API.
+`chat2benchmark` is a standalone Java tool that **automatically generates JMH 1.37 benchmark classes** for Java production methods using a **Large Language Model (LLM)** via a configurable API.
 
 🧠 This tool is completely **LLM-agnostic**: you can use any model (LLaMA, GPT, Claude, etc.) **as long as it exposes a chat-completions API** (like OpenAI’s).
 
@@ -8,7 +8,7 @@
 
 ## 📦 Download
 
-You can download the latest version of `chat2unittest` from the [releases](https://github.com/AntonioTrovato/chat2benchmark/releases) page.
+You can download the latest version of `chat2benchmark` from the [releases](https://github.com/AntonioTrovato/chat2benchmark/releases) page.
 
 ## ✅ Key Features
 
