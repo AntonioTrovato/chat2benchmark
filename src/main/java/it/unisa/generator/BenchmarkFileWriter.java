@@ -5,9 +5,6 @@ import java.nio.file.*;
 
 public class BenchmarkFileWriter {
     public static void writeBenchmark(String originalJavaPath, String content) throws IOException {
-        String microClassName = originalJavaPath.substring(originalJavaPath.lastIndexOf('/') + 1)
-                .replace(".java", "Microbenchmark.java");
-
         String jmhPath = originalJavaPath
                 .replace("/main/", "/jmh/")
                 .replace(".java", "Benchmark.java");

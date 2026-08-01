@@ -10,32 +10,28 @@ public class PromptBuilder {
         String className = filePath.substring(filePath.lastIndexOf('/') + 1).replace(".java", "");
         String code = Files.readString(Paths.get(filePath));
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Generate a JMH 1.37 benchmark class called ").append(className).append("Benchmark ");
-        sb.append("for the Java class ").append(className).append(":\n\n");
-        sb.append(code).append("\n\n");
-        sb.append("Include @Benchmark methods to measure performance ONLY of methods: ");
-        sb.append(String.join(", ", methods)).append(".\n");
-        sb.append("\nIMPORTANT:\n");
-        sb.append("- Output ONLY valid Java code\n");
-        sb.append("- Do NOT include explanations, notes, comments, or markdown\n");
-        sb.append("- Do NOT include ``` or any text outside the Java class\n");
-        sb.append("- The output must be directly compilable\n");
-        return sb.toString();
+        return "Generate a JMH 1.37 benchmark class called " + className + "Benchmark " +
+                "for the Java class " + className + ":\n\n" +
+                code + "\n\n" +
+                "Include @Benchmark methods to measure performance ONLY of methods: " +
+                String.join(", ", methods) + ".\n" +
+                "\nIMPORTANT:\n" +
+                "- Output ONLY valid Java code\n" +
+                "- Do NOT include explanations, notes, comments, or markdown\n" +
+                "- Do NOT include ``` or any text outside the Java class\n" +
+                "- The output must be directly compilable\n";
     }
 
     public static String buildFixPrompt(String code, String errorMessage) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Correct the following JMH benchmark class:\n\n");
-        sb.append(code).append("\n\n");
-        sb.append("This is the error message I got:\n\n");
-        sb.append(errorMessage).append("\n\n");
-        sb.append("Output instructions:\n");
-        sb.append("  - Rewrite the correct JMH 1.37 Benchmark class\n");
-        sb.append("  - Output ONLY valid Java code\n");
-        sb.append("  - Do NOT include explanations, notes, comments, or markdown\n");
-        sb.append("  - Do NOT include ``` or any text outside the Java class\n");
-        sb.append("  - The output must be directly compilable\n");
-        return sb.toString();
+        return "Correct the following JMH benchmark class:\n\n" +
+                code + "\n\n" +
+                "This is the error message I got:\n\n" +
+                errorMessage + "\n\n" +
+                "Output instructions:\n" +
+                "  - Rewrite the correct JMH 1.37 Benchmark class\n" +
+                "  - Output ONLY valid Java code\n" +
+                "  - Do NOT include explanations, notes, comments, or markdown\n" +
+                "  - Do NOT include ``` or any text outside the Java class\n" +
+                "  - The output must be directly compilable\n";
     }
 }
