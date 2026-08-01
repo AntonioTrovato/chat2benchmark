@@ -17,4 +17,10 @@ public class BenchmarkFileWriter {
         Files.writeString(path, content);
         System.out.println("Generated: " + path);
     }
+
+    public static void writeFixedBenchmark(String benchmarkPath, String content) throws IOException {
+        Path path = Paths.get(benchmarkPath);
+        Files.writeString(path, content);
+        System.out.println("Fixed: " + path);
+    }
 }

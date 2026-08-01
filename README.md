@@ -82,7 +82,24 @@ The generated class will be named `ClassNameBenchmark.java` for each `ClassName.
 
 ---
 
+## 🩹 Fix Mode
+
+If a previously generated benchmark class fails to compile or throws an error at runtime, you can ask the LLM to correct it directly, instead of regenerating it from scratch.
+
+```bash
+java -jar path/to/jar/chat2benchmark.jar -fix path/to/SomeClassBenchmark.java path/to/error.txt -host https://xxxxxxxx/v1/chat/completions -mdl model_name -tmp temperature
+```
+
+Where:
+- `path/to/SomeClassBenchmark.java`: path to the existing JMH benchmark class to correct
+- `path/to/error.txt`: a text file containing the syntax or runtime error message you got
+- `host`, `mdl`, `tmp`: same as in the standard generation mode
+
+The tool sends the benchmark source code together with the error message to the LLM, asking it to rewrite a corrected, directly compilable JMH 1.37 benchmark class, and **overwrites the original benchmark file** with the corrected code.
+
+---
+
 ## 🛠️ Notes
 
 - The tool has been compiled using Java 23.0.1 and Maven 3.8.9
-- The chat2benchmark.jar is target/chat2benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar renamed.
+- The chat2benchmark.jar is target/chat2benchmark-x.y-SNAPSHOT-jar-with-dependencies.jar renamed.
